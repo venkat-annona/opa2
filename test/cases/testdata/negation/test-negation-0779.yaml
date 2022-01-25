@@ -1,0 +1,20 @@
+cases:
+- data:
+    b:
+      v1: hello
+      v2: goodbye
+  modules:
+  - |
+    package generated
+
+    p {
+      not data.generated.q.v0
+    }
+
+    q[x] {
+      data.b[x] = v
+    }
+  note: 'negation/neg: set contains'
+  query: data.generated.p = x
+  want_result:
+  - x: true
